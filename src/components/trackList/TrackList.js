@@ -10,6 +10,8 @@ export class TrackList extends React.Component {
           key={track.id}
           track={track}
           onPlusClick={this.props.onPlusClick}
+          onMinusClick={this.props.onMinusClick}
+          isRemoval={this.props.isRemoval}
         />
       );
     });

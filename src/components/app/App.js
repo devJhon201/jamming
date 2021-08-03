@@ -31,16 +31,38 @@ class App extends React.Component {
       ],
     };
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
 
   addTrack(track) {
     const playList = this.state.playListTracks;
-    if (!playList.includes(track)) {
+    let alreadyAdded = false;
+
+    playList.forEach((elemento) => {
+      if (track.id === elemento.id) {
+        alreadyAdded = true;
+      }
+    });
+    if (!alreadyAdded) {
       playList.push(track);
       this.setState({
         playListTracks: playList,
       });
     }
+  }
+
+  removeTrack(track) {
+    const playList = this.state.playListTracks;
+
+    playList.forEach((elemento, index) => {
+      if (track.id === elemento.id) {
+        playList.splice(index, 1);
+      }
+    });
+
+    this.setState({
+      playListTracks: playList,
+    });
   }
 
   render() {
@@ -59,6 +81,7 @@ class App extends React.Component {
             <Playlist
               name={this.state.playListName}
               tracks={this.state.playListTracks}
+              onMinusClick={this.removeTrack}
             />
           </div>
         </div>
