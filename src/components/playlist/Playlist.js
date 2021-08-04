@@ -9,22 +9,22 @@ export class Playlist extends React.Component {
   }
 
   handleNameChange(event) {
-    this.props.onNameChange(event.target.value);
+    const value = event.target.value;
+    this.props.onNameChange(value);
   }
 
   render() {
     return (
       <div className="Playlist">
-        <input
-          defaultValue={"New Playlist"}
-          onChange={this.handleNameChange()}
-        />
+        <input defaultValue={"New Playlist"} onChange={this.handleNameChange} />
         <TrackList
           tracks={this.props.tracks}
           onMinusClick={this.props.onMinusClick}
           isRemoval={true}
         />
-        <button className="Playlist-save">SAVE TO SPOTIFY</button>
+        <button className="Playlist-save" onClick={this.props.onSave}>
+          SAVE TO SPOTIFY
+        </button>
       </div>
     );
   }
