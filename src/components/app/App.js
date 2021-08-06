@@ -3,6 +3,7 @@ import "./App.css";
 import { SearchBar } from "../searchBar/SearchBar.js";
 import { SearchResults } from "../searchResults/SearchResults";
 import { Playlist } from "../playlist/Playlist.js";
+import { Spotify } from "../../util/Spotify.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -18,17 +19,8 @@ class App extends React.Component {
           album: "Third album",
         },
       ],
-      playListName: "Buena",
-      playListTracks: [
-        { id: 1, name: "Hello", artist: "Adele", album: "First album" },
-        { id: 2, name: "Safaera", artist: "Bad bunny", album: "Second album" },
-        {
-          id: 3,
-          name: "Me gustas mucho",
-          artist: "Rocio durcal",
-          album: "Third album",
-        },
-      ],
+      playListName: "New Playlist",
+      playListTracks: [],
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -79,11 +71,23 @@ class App extends React.Component {
       return elm.uri;
     });
 
-    return trackURIs;
+    Spotify.savePlaylist(this.state.playListName, trackURIs);
   }
 
   search(searchTerm) {
-    console.log(searchTerm);
+    if (searchTerm) {
+      Spotify.search(searchTerm).then((results) => {
+        this.setState({
+          searchResults: results,
+        });
+      });
+    } else {
+      return;
+    }
+  }
+
+  componentDidMount() {
+    Spotify.getAccessToken();
   }
 
   render() {
@@ -93,7 +97,7 @@ class App extends React.Component {
           Ja<span className="highlight">mmm</span>ing
         </h1>
         <div className="App">
-          <SearchBar onSeacrh={this.search} />
+          <SearchBar onSearch={this.search} />
           <div className="App-playlist">
             <SearchResults
               results={this.state.searchResults}
