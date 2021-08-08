@@ -1,5 +1,5 @@
 let accessToken = "";
-let uri = "http://localhost:3000/";
+let uri = "http://abortive-pin.surge.sh/";
 const clientID = "85894da73ee64d4bb0b1e5c4f98d3f11";
 
 export const Spotify = {
