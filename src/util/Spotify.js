@@ -1,5 +1,5 @@
 let accessToken = "";
-let uri = "http://abortive-pin.surge.sh/";
+let uri = "https://jamming-jhon.netlify.app/";
 const clientID = "85894da73ee64d4bb0b1e5c4f98d3f11";
 
 export const Spotify = {
