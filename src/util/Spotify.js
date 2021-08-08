@@ -1,5 +1,5 @@
 let accessToken = "";
-let uri = "http://abortive-pin.surge.sh/";
+let uri = "http://localhost:3000/";
 const clientID = "85894da73ee64d4bb0b1e5c4f98d3f11";
 
 export const Spotify = {
@@ -49,6 +49,7 @@ export const Spotify = {
         artist: elem.artists[0].name,
         album: elem.album.name,
         uri: elem.uri,
+        preview: elem.preview_url,
       };
     });
 

@@ -32,6 +32,28 @@ export class Track extends React.Component {
     }
   }
 
+  handlePlay(event) {
+    const audios = [...document.getElementsByClassName("audios")];
+    for (let i = 0; i < audios.length; i++) {
+      if (event.target === audios[i]) {
+        continue;
+      }
+      audios[i].pause();
+    }
+  }
+
+  renderSampleTrack() {
+    if (!this.props.previewSrc) {
+      return <p>Sample not available.</p>;
+    }
+    return (
+      <audio controls className="audios" onPlay={this.handlePlay}>
+        <source src={this.props.previewSrc} type="audio/mpeg" />
+        Your browser does not support this format of audio.
+      </audio>
+    );
+  }
+
   render() {
     return (
       <div className="Track">
@@ -40,6 +62,7 @@ export class Track extends React.Component {
           <p>
             {this.props.track.artist} | {this.props.track.album}
           </p>
+          {this.renderSampleTrack()}
         </div>
         {this.renderAction()}
       </div>

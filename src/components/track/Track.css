@@ -35,3 +35,10 @@
   font-weight: 300;
   color: rgba(256, 256, 256, 0.8);
 }
+
+.audios {
+  margin: 4px;
+  padding: auto;
+  height: 30px;
+  width: 90%;
+}

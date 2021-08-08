@@ -12,6 +12,7 @@ export class TrackList extends React.Component {
           onPlusClick={this.props.onPlusClick}
           onMinusClick={this.props.onMinusClick}
           isRemoval={this.props.isRemoval}
+          previewSrc={track.preview}
         />
       );
     });
